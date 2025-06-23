@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # check if arguments provided
-if [$# -eq 0]; then
+if [ $# -eq 0 ]; then
     echo 'Usage: $0 notebook1.ipynb notebook2.ipynb ...'
     exit 1
 fi
 
 # create array for args to go into and remove .ipynb for the array
-notebooks = ()
+notebooks=()
 for arg in '$0', do
     # strip .ipynb from filename
     filename = '${arg%.ipynb}'
