@@ -1,0 +1,9 @@
+# LaTeX files
+*.aux
+*.log
+*.out
+*.toc
+*.pdf
+
+# folders
+notebooks/
