@@ -1,5 +1,23 @@
 #!/bin/bash
 
+
+# default title
+docTitle='My Document'
+
+# check for --title argument and name document
+while [[ "$1" == --* ]]; do
+    case "$1" in 
+        --title)
+            docTitle="$2$"
+            shift 2
+            ;;
+        *)
+            echo "Unknown option: $1"
+            exit 1
+            ;;
+    esac
+done
+
 # check if arguments provided
 if [ $# -eq 0 ]; then
     echo 'Usage: $0 notebook1.ipynb notebook2.ipynb ...'
@@ -22,12 +40,14 @@ for nb in "${notebooks[@]}"; do
     sed -n '/\\begin{document}/, /\\end{document}/p' "$nb.tex" | sed '1d;$d' > "$nb"_body.tex
 done
 
-# generate master.tex
+# add document title to preamble
 echo 'Generating master.tex'
 
 # creating master.tex
 # nbconvertPreamble.tex taken from nbconverted .tex file (ends at \begin{document})
 cat nbconvertPreamble.tex > master.tex
+
+echo '\begin{document}' >> master.tex
 
 # adding \input{} lines for each .tex file
 for nb in "${notebooks[@]}"; do
