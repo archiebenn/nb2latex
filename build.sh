@@ -25,28 +25,12 @@ done
 # generate master.tex
 echo 'Generating master.tex'
 
-cat > master.tex << EOL
-\\documentclass[12pt]{article}
-\\usepackage[utf8]{inputenc}
-\\usepackage{graphicx}
-\\usepackage{amsmath}
-\\usepackage{amssymb}
-\\usepackage{hyperref}
-\\usepackage{fancyvrb} % for Jupyter code blocks
-
-\\title{Combined Notebooks}
-\\author{Your Name}
-\\date{\\today}
-
-\\begin{document}
-
-\\maketitle
-\\tableofcontents
-EOL
+# creating master.tex
+# nbconvertPreamble.tex taken from nbconverted .tex file (ends at \begin{document})
+cat nbconvertPreamble.tex > master.tex
 
 # adding \input{} lines for each .tex file
 for nb in "${notebooks[@]}"; do
-    echo '\\clearpage' >> master.tex
     echo "\\section*{$nb}" >> master.tex
     echo "\\input{$nb}_body.tex" >> master.tex
 done
