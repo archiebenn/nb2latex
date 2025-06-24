@@ -21,8 +21,8 @@ for nb in "${notebooks[@]}"; do
     # strip .tex stuff for individual notebooks to add easily to master.tex
     sed -i '/\\documentclass/d' "$nb.tex"
     sed -i '/\\usepackage/d' "$nb.tex"
-    sed -i '/\\begin{document}/ "$nb.tex"
-    sed -i  /\\end{document}/d' "$nb.tex"
+    sed -i '/\\begin{document}/' "$nb.tex"
+    sed -i  '/\\end{document}/d' "$nb.tex"
 done
 
 # generate master.tex
