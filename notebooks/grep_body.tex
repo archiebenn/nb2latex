@@ -1,0 +1,63 @@
+    
+    \maketitle
+    
+    
+
+    
+    \section{\texorpdfstring{\texttt{grep}}{grep}}\label{grep}
+
+For finding occurances within files
+
+    \subsection{Useful flags}\label{useful-flags}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \texttt{grep\ -w} to only get exact occurance/whole word instead of
+  part of another.
+\item
+  \texttt{grep\ -c} to print number of occurances (line counts) to
+  stdout instead of the actual occurances
+\item
+  \texttt{grep\ -A\ NUM} for \texttt{NUM} count of lines after grep
+  target to stdout
+\end{enumerate}
+
+    \subsection{Example uses}\label{example-uses}
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cat vombaticus.gff3 }\KeywordTok{|} \FunctionTok{cut} \AttributeTok{{-}f}\NormalTok{ 3 }\KeywordTok{|} \FunctionTok{grep}\NormalTok{ tRN}
+
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\ExtensionTok{tRNA}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ cat vombaticus.gff3 }\KeywordTok{|} \FunctionTok{cut} \AttributeTok{{-}f}\NormalTok{ 3 }\KeywordTok{|} \FunctionTok{grep} \AttributeTok{{-}c}\NormalTok{ tRN}
+
+\ExtensionTok{8}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{$}\NormalTok{ grep }\AttributeTok{{-}A1} \StringTok{"\textgreater{}"}\NormalTok{ file.fa}
+\end{Highlighting}
+\end{Shaded}
+
+To find header of new fasta when separated by \texttt{\textgreater{}}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
