@@ -8,10 +8,11 @@ docTitle='My Document'
 while [[ "$1" == --* ]]; do
     case "$1" in 
         --title)
-            docTitle="$2$"
+            docTitle="$2"
             shift 2
             ;;
         *)
+            #catch any flag typos
             echo "Unknown option: $1"
             exit 1
             ;;
@@ -36,26 +37,34 @@ done
 for nb in "${notebooks[@]}"; do
     echo "Converting $nb.ipynb to LaTeX file..."
     jupyter nbconvert "$nb.ipynb" --to latex
-    # take main body of each individual .tex file (and remove \begin{document} and \end{document} of each)
-    sed -n '/\\begin{document}/, /\\end{document}/p' "$nb.tex" | sed '1d;$d' > "$nb"_body.tex
+
+    # take main body of each individual .tex file (and remove \begin{document}, \maketitle and \end{document} of each)
+    sed -n '/\\begin{document}/, /\\end{document}/p' "$nb.tex" | sed -e '1d' -e '3d' -e '$d' > "$nb"_body.tex
 done
 
-# add document title to preamble
-echo 'Generating master.tex'
+# extract preamble from first notebook (nbconvert preamble) and create preamble.tex file
+nbOne="${notebooks[0]}"
+# takes preamble up to and including \begin{document}, then pipe deletes '\begin{document}
+sed '/\\begin{document}/q' "${nbOne}.tex" | sed '$d' > preamble.tex
 
-# creating master.tex
-# nbconvertPreamble.tex taken from nbconverted .tex file (ends at \begin{document})
-cat nbconvertPreamble.tex > master.tex
+# add title from argument and \maketitle to preamble.tex
+echo "\\title{$docTitle}" >> preamble.tex
 
-echo '\begin{document}' >> master.tex
+# add document title to preamble and create master tex file
+echo "Generating $docTitle.tex"
+cat preamble.tex > "$docTitle.tex"
+echo '\begin{document}' >> "$docTitle.tex"
+echo "\\maketitle" >> "$docTitle.tex"
 
 # adding \input{} lines for each .tex file
 for nb in "${notebooks[@]}"; do
-    echo "\clearpage" >> master.tex
-    echo "\\section*{$nb}" >> master.tex
-    echo "\\input{${nb}_body.tex}" >> master.tex
+    echo "\clearpage" >> "$docTitle.tex"
+    echo "\\section*{$nb}" >> "$docTitle.tex"
+    echo "\\input{${nb}_body.tex}" >> "$docTitle.tex"
 done
 
-echo '\end{document}' >> master.tex
+echo '\end{document}' >> "$docTitle.tex"
+
+pdflatex "$docTitle.tex"
 
 echo 'Done!'

@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.24)  24 JUN 2025 21:43
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2024.7.24)  24 JUN 2025 21:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**master.tex
-(./master.tex
+**"Some CLI commands.tex"
+(./Some CLI commands.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -1179,15 +1179,8 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count331
 \l__pdf_internal_box=\box92
 )
-(./master.aux
-
-LaTeX Warning: Label `useful-flags' multiply defined.
-
-
-LaTeX Warning: Label `example-uses' multiply defined.
-
-)
-\openout1 = `master.aux'.
+No file "Some CLI commands".aux.
+\openout1 = `"Some CLI commands.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 410.
 LaTeX Font Info:    ... okay on input line 410.
@@ -1206,7 +1199,7 @@ LaTeX Font Info:    ... okay on input line 410.
 LaTeX Font Info:    Checking defaults for LGR/cmr/m/n on input line 410.
 LaTeX Font Info:    Trying to load font information for LGR+cmr on input line 4
 10.
- (/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
+(/usr/share/texlive/texmf-dist/tex/latex/cbfonts-fd/lgrcmr.fd
 File: lgrcmr.fd 2017/07/29 v1.2 Greek European Computer Regular
 )
 LaTeX Font Info:    ... okay on input line 410.
@@ -1332,13 +1325,11 @@ LaTeX Info: Redefining \omega on input line 410.
    defining Unicode char U+03F1 (decimal 1009)
    defining Unicode char U+03F5 (decimal 1013)
 Package hyperref Info: Link coloring ON on input line 410.
-(./master.out) (./master.out)
 \@outlinefile=\write5
-\openout5 = `master.out'.
+\openout5 = `"Some CLI commands.out"'.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 411
 .
-
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
@@ -1376,36 +1367,43 @@ LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10.95> not available
 ]
 (./notebooks/wc_body.tex) [3
 
-{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./master.aux)
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./Some CLI comma
+nds.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-Package rerunfilecheck Info: File `master.out' has not changed.
-(rerunfilecheck)             Checksum: 6F659CE29DBA51485B1A7AFB5DC9BA98;606.
+
+Package rerunfilecheck Warning: File `"Some CLI commands".out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `"Some CLI commands".out':
+(rerunfilecheck)             Before: <no file>
+(rerunfilecheck)             After:  6F659CE29DBA51485B1A7AFB5DC9BA98;606.
  ) 
 Here is how much of TeX's memory you used:
- 27224 strings out of 474222
- 500460 string characters out of 5748733
+ 27211 strings out of 474222
+ 500453 string characters out of 5748733
  1927975 words of memory out of 5000000
- 48995 multiletter control sequences out of 15000+600000
+ 48988 multiletter control sequences out of 15000+600000
  569515 words of font info for 69 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 101i,6n,107p,499b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 101i,6n,107p,512b,438s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sftt1095.pfb></usr/share/texmf/fonts/type1/public/cm
 -super/sftt1440.pfb>
-Output written on master.pdf (3 pages, 121734 bytes).
+Output written on "Some CLI commands.pdf" (3 pages, 121383 bytes).
 PDF statistics:
- 97 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 78 PDF objects out of 1000 (max. 8388607)
+ 57 compressed objects within 1 object stream
  15 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
