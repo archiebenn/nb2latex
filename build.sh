@@ -8,10 +8,10 @@ fi
 
 # create array for args to go into and remove .ipynb for the array
 notebooks=()
-for arg in "$0", do
+for arg in "$@", do
     # strip .ipynb from filename
-    filename = "${arg%.ipynb}"
-    notebooks+= ("$filename")
+    filename="${arg%.ipynb}"
+    notebooks+=("$filename")
 done
 
 # loop over notebook array and use nbconvert to convert to .tex
@@ -50,7 +50,7 @@ EOL
 for nb in "${notebooks[@]}"; do
     echo '\\clearpage' >> master.tex
     echo "\\section*{$nb}" >> master.tex
-    echo "\\input{$nb" >> master.tex
+    echo "\\input{$nb}" >> master.tex
 done
 
 echo '\\end{document}' >> master.tex
