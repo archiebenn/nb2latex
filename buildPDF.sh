@@ -41,10 +41,10 @@ done
 # loop over notebook array and use nbconvert to convert to .tex
 for nb in "${notebooks[@]}"; do
     echo "Converting $nb.ipynb to LaTeX file..."
-    jupyter nbconvert "$nb.ipynb" --to latex
+    jupyter nbconvert "$nb.ipynb" --to latex 
 
     # take main body of each individual .tex file (and remove \begin{document}, \maketitle and \end{document} of each)
-    sed -n '/\\begin{document}/, /\\end{document}/p' "$nb.tex" | sed -e '1d' -e '3d' -e '$d' > "$nb"_body.tex
+    sed -n '/\\begin{document}/, /\\end{document}/p' "$nb.tex" | sed -e '1d' -e '3d' -e '$d' > "${nb}Body.tex"
 done
 
 # extract preamble from first notebook (nbconvert preamble) and create preamble.tex file
@@ -62,15 +62,17 @@ echo '\tableofcontents' >> "$docTitle.tex"
 # adding \input{} lines for each .tex file
 for nb in "${notebooks[@]}"; do
     echo "\clearpage" >> "$docTitle.tex"
-    echo "\\input{${nb}_body.tex}" >> "$docTitle.tex"
+    echo "\\input{${nb}Body.tex}" >> "$docTitle.tex"
 done
 
 echo '\end{document}' >> "$docTitle.tex"
 
-pdflatex "$docTitle.tex"
+# compile (twice for table of contents)
+echo 'Compiling LaTeX...'
+pdflatex "$docTitle.tex" > /dev/null 2>&1
+pdflatex "$docTitle.tex" > /dev/null 2>&1
 
 # move output files to document directory
 mv "$docTitle".{aux,log,out,toc,tex} "$outputDir"/
-mv *_body.tex "$outputDir"
 
-echo 'Done!'
+echo "PDF compiling complete! Output: $docTitle.pdf"

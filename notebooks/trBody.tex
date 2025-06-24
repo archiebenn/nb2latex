@@ -1,0 +1,91 @@
+    
+    
+    
+
+    
+    \section{\texorpdfstring{\texttt{tr}}{tr}}\label{tr}
+
+For `trapping' stdin. Takes input and translates, squeezes, or deletes
+characters. Use with \texttt{echo}, pipes, or redirections.
+
+    \subsection{Syntax}\label{syntax}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tr} \PreprocessorTok{[}\SpecialStringTok{OPTION}\PreprocessorTok{]}\NormalTok{ SET1 }\PreprocessorTok{[}\SpecialStringTok{SET2}\PreprocessorTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{Useful flags}\label{useful-flags}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{(}\ExtensionTok{none}\KeywordTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+→ Translate SET1 to SET2
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tr} \AttributeTok{{-}d}
+\end{Highlighting}
+\end{Shaded}
+
+→ Delete characters in SET1
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tr} \AttributeTok{{-}s}
+\end{Highlighting}
+\end{Shaded}
+
+→ Squeeze repeated characters into one
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tr} \AttributeTok{{-}c}
+\end{Highlighting}
+\end{Shaded}
+
+→ Complement SET1 (ie match everything else)
+
+    \subsection{Example uses}\label{example-uses}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"hello"} \KeywordTok{|} \FunctionTok{tr} \StringTok{\textquotesingle{}a{-}z\textquotesingle{}} \StringTok{\textquotesingle{}A{-}Z\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+→ \texttt{HELLO}
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{\textasciigrave{}}\FunctionTok{tr} \StringTok{"\textbackslash{}n"} \StringTok{" "}
+\end{Highlighting}
+\end{Shaded}
+
+→ Converts newlines to spaces
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"hello 123"} \KeywordTok{|} \FunctionTok{tr} \AttributeTok{{-}d} \StringTok{\textquotesingle{}0{-}9\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+→ \texttt{hello} (deletes characters - numbers here)
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tr} \AttributeTok{{-}d} \StringTok{\textquotesingle{}\textbackslash{}n\textquotesingle{}} \OperatorTok{\textless{}}\NormalTok{ file.txt}
+\end{Highlighting}
+\end{Shaded}
+
+→ Removes newlines (flattens text)
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    

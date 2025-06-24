@@ -1,0 +1,102 @@
+    
+    
+    
+
+    
+    \section{\texorpdfstring{\texttt{datamash}}{datamash}}\label{datamash}
+
+For quick stats from CLI
+
+    \subsection{Syntax}\label{syntax}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{datamash} \PreprocessorTok{[}\SpecialStringTok{OPTIONS}\PreprocessorTok{]}\NormalTok{ operation column}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{Useful operations}\label{useful-operations}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{count}
+\end{Highlighting}
+\end{Shaded}
+
+→ Number of rows
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}
+\end{Highlighting}
+\end{Shaded}
+
+→ Sum of numeric values
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{mean}
+\end{Highlighting}
+\end{Shaded}
+
+→ Average
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{min/max}
+\end{Highlighting}
+\end{Shaded}
+
+→ Minimum/Maximum
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{uniq}
+\end{Highlighting}
+\end{Shaded}
+
+→ Unique values (sort first)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{groupby}
+\end{Highlighting}
+\end{Shaded}
+
+→ Group rows by a column (use with sort)
+
+    \subsection{Useful flags}\label{useful-flags}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{{-}t} \OperatorTok{\textless{}}\NormalTok{DELIM}\OperatorTok{\textgreater{}}
+\end{Highlighting}
+\end{Shaded}
+
+→ Set field delimiter (e.g -t',' to separate by commas for .csv)
+
+    \subsection{Example uses}\label{example-uses}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{datamash} \AttributeTok{{-}t}\StringTok{\textquotesingle{},\textquotesingle{}}\NormalTok{ sum 2 }\OperatorTok{\textless{}}\NormalTok{ data.csv}
+\end{Highlighting}
+\end{Shaded}
+
+→ Sums 2nd column
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Compute mean for 1st column in .txt}
+\FunctionTok{cat}\NormalTok{ gene\_counts.txt }\KeywordTok{|} \ExtensionTok{datamash}\NormalTok{  mean 1}
+\ExtensionTok{30.785308441558}
+\end{Highlighting}
+\end{Shaded}
+
+→ Compute mean for 1st column in .txt file
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    

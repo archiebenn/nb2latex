@@ -1,0 +1,53 @@
+    
+    
+    
+
+    
+    \section{\texorpdfstring{\texttt{sort-uniq-count-rank}}{sort-uniq-count-rank}}\label{sort-uniq-count-rank}
+
+For organising counts in datasets - Essentially runs
+\texttt{sort\ \textbar{}\ uniq\ -c\ \textbar{}\ sort\ -rn}
+
+    \subsection{Example uses}\label{example-uses}
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{ vombaticus.gff3 }\KeywordTok{|} \FunctionTok{cut} \AttributeTok{{-}f}\NormalTok{ 3 }\KeywordTok{|} \ExtensionTok{sort{-}uniq{-}count{-}rank}
+
+\KeywordTok{\textasciigrave{}}\ExtensionTok{386346}\NormalTok{ exon}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{364707}\NormalTok{ CDS}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{46571}\NormalTok{  biological\_region}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{40512}  \CommentTok{\#\#\#}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{32886}\NormalTok{  mRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{29973}\NormalTok{  five\_prime\_UTR}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{21114}\NormalTok{  gene}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{20531}\NormalTok{  three\_prime\_UTR}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{15416}\NormalTok{  region}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{3318}\NormalTok{   ncRNA\_gene}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1911}\NormalTok{   lnc\_RNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{700}\NormalTok{    snRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{577}\NormalTok{    pseudogene}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{577}\NormalTok{    pseudogenic\_transcript}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{543}\NormalTok{    miRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{462}\NormalTok{    transcript}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{311}\NormalTok{    snoRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{22}\NormalTok{ tRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{19}\NormalTok{ scRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{13}\NormalTok{ rRNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{6}\NormalTok{  Y\_RNA}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{2}\NormalTok{  V\_gene\_segment}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}  \CommentTok{\#!genebuild{-}last{-}updated 2019{-}02}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}  \CommentTok{\#!genome{-}build  bare{-}nosed\_wombat\_genome\_assembly}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}  \CommentTok{\#!genome{-}build{-}accession GCA\_900497805.2}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}  \CommentTok{\#!genome{-}date 2018{-}12}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}  \CommentTok{\#!genome{-}version bare{-}nosed\_wombat\_genome\_assembly}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}  \CommentTok{\#\#gff{-}version 3}\KeywordTok{\textasciigrave{}}
+\KeywordTok{\textasciigrave{}}\ExtensionTok{1}\NormalTok{  J\_gene\_segment}\KeywordTok{\textasciigrave{}}
+\end{Highlighting}
+\end{Shaded}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
