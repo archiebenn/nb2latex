@@ -1,1 +1,1 @@
-# LaTeXnb
+# nb2latex
