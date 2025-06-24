@@ -17,7 +17,7 @@ done
 # loop over notebook array and use nbconvert to convert to .tex
 for nb in "${notebooks[@]}"; do
     echo "Converting $nb.ipynb to LaTeX file..."
-    nbconvert "$nb.ipynb" --to latex
+    jupyter nbconvert "$nb.ipynb" --to latex
     # strip .tex stuff for individual notebooks to add easily to master.tex
     sed -i '/\\documentclass/d' "$nb.tex"
     sed -i '/\\usepackage/d' "$nb.tex"
