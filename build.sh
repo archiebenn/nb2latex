@@ -18,11 +18,8 @@ done
 for nb in "${notebooks[@]}"; do
     echo "Converting $nb.ipynb to LaTeX file..."
     jupyter nbconvert "$nb.ipynb" --to latex
-    # strip .tex stuff for individual notebooks to add easily to master.tex
-    sed -i '/\\documentclass/d' "$nb.tex"
-    sed -i '/\\usepackage/d' "$nb.tex"
-    sed -i '/\\begin{document}/' "$nb.tex"
-    sed -i  '/\\end{document}/d' "$nb.tex"
+    # take main body of each individual .tex file (and remove \begin{document} and \end{document} of each)
+    sed -n '/\\begin{document}/, /\\end{document}/p' "$nb.tex" | sed '1d;$d' > "$nb"_body.tex
 done
 
 # generate master.tex
@@ -51,7 +48,7 @@ EOL
 for nb in "${notebooks[@]}"; do
     echo '\\clearpage' >> master.tex
     echo "\\section*{$nb}" >> master.tex
-    echo "\\input{$nb}" >> master.tex
+    echo "\\input{$nb}_body.tex" >> master.tex
 done
 
 echo '\\end{document}' >> master.tex
