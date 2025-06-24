@@ -8,20 +8,20 @@ fi
 
 # create array for args to go into and remove .ipynb for the array
 notebooks=()
-for arg in '$0', do
+for arg in "$0", do
     # strip .ipynb from filename
-    filename = '${arg%.ipynb}'
-    notebooks+= ('$filename')
+    filename = "${arg%.ipynb}"
+    notebooks+= ("$filename")
 done
 
 # loop over notebook array and use nbconvert to convert to .tex
-for nb in '${notebooks[@]}'; do
-    echo 'Converting $nb.ipynb to LaTeX file...'
-    nbconvert '$nb.ipynb' --to latex
+for nb in "${notebooks[@]}"; do
+    echo "Converting $nb.ipynb to LaTeX file..."
+    nbconvert "$nb.ipynb" --to latex
     # strip .tex stuff for individual notebooks to add easily to master.tex
-    sed -i '/\\documentclass/d' '$nb.tex'
-    sed -i '/\\usepackage/d' '$nb.tex'
-    sed -i '/\\begin{document}/, /\\end{document}/d' '$nb.tex'
+    sed -i '/\\documentclass/d' "$nb.tex"
+    sed -i '/\\usepackage/d' "$nb.tex"
+    sed -i '/\\begin{document}/, /\\end{document}/d' "$nb.tex"
 done
 
 # generate master.tex
@@ -47,10 +47,10 @@ cat > master.tex << EOL
 EOL
 
 # adding \input{} lines for each .tex file
-for nb in '${notebooks[@]}'; do
+for nb in "${notebooks[@]}"; do
     echo '\\clearpage' >> master.tex
-    echo '\\section*{$nb}' >> master.tex
-    echo '\\input{$nb' >> master.tex
+    echo "\\section*{$nb}" >> master.tex
+    echo "\\input{$nb" >> master.tex
 done
 
 echo '\\end{document}' >> master.tex
