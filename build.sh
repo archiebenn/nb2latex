@@ -4,7 +4,7 @@
 # default title
 docTitle='My Document'
 
-# check for --title argument and name document
+# check for --title argument and name document. shift so $@ only .ipynbs
 while [[ "$1" == --* ]]; do
     case "$1" in 
         --title)
@@ -18,6 +18,11 @@ while [[ "$1" == --* ]]; do
             ;;
     esac
 done
+
+# make directory for output files
+outputDir="${docTitle} files"
+mkdir -p "$outputDir"
+
 
 # check if arguments provided
 if [ $# -eq 0 ]; then
@@ -45,26 +50,27 @@ done
 # extract preamble from first notebook (nbconvert preamble) and create preamble.tex file
 nbOne="${notebooks[0]}"
 # takes preamble up to and including \begin{document}, then pipe deletes '\begin{document}
-sed '/\\begin{document}/q' "${nbOne}.tex" | sed '$d' > preamble.tex
+sed '/\\begin{document}/q' "${nbOne}.tex" | sed '$d' > "$docTitle.tex"
 
-# add title from argument and \maketitle to preamble.tex
-echo "\\title{$docTitle}" >> preamble.tex
 
-# add document title to preamble and create master tex file
-echo "Generating $docTitle.tex"
-cat preamble.tex > "$docTitle.tex"
+# add document extras post-preamble
+echo "\\title{$docTitle}" >> "$docTitle.tex"
 echo '\begin{document}' >> "$docTitle.tex"
 echo "\\maketitle" >> "$docTitle.tex"
+echo '\tableofcontents' >> "$docTitle.tex"
 
 # adding \input{} lines for each .tex file
 for nb in "${notebooks[@]}"; do
     echo "\clearpage" >> "$docTitle.tex"
-    echo "\\section*{$nb}" >> "$docTitle.tex"
     echo "\\input{${nb}_body.tex}" >> "$docTitle.tex"
 done
 
 echo '\end{document}' >> "$docTitle.tex"
 
 pdflatex "$docTitle.tex"
+
+# move output files to document directory
+mv "$docTitle".{aux,log,out,toc,tex} "$outputDir"/
+mv *_body.tex "$outputDir"
 
 echo 'Done!'
