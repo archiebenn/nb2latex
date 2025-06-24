@@ -31,11 +31,11 @@ cat nbconvertPreamble.tex > master.tex
 
 # adding \input{} lines for each .tex file
 for nb in "${notebooks[@]}"; do
-    echo "\\clearpage" >> master.tex
+    echo "\clearpage" >> master.tex
     echo "\\section*{$nb}" >> master.tex
     echo "\\input{${nb}_body.tex}" >> master.tex
 done
 
-echo '\\end{document}' >> master.tex
+echo '\end{document}' >> master.tex
 
 echo 'Done!'
