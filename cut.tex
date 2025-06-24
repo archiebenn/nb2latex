@@ -372,3 +372,71 @@
     
     
 
+\begin{document}
+    
+    \maketitle
+    
+    
+
+    
+    \section{\texorpdfstring{\texttt{cut}}{cut}}\label{cut}
+
+For extracting sections of lines from input to stdout
+
+    \subsection{Useful flags}\label{useful-flags}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cut} \AttributeTok{{-}f}
+\end{Highlighting}
+\end{Shaded}
+
+→ Field numbers (use with -d)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cut} \AttributeTok{{-}d}
+\end{Highlighting}
+\end{Shaded}
+
+→ Cut delimiter (default: TAB)
+
+    \subsection{Example uses}\label{example-uses}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cut} \AttributeTok{{-}d}\StringTok{\textquotesingle{},\textquotesingle{}} \AttributeTok{{-}f2}\NormalTok{ data.csv}
+\end{Highlighting}
+\end{Shaded}
+
+→ Extracts second column from data.csv
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cut} \AttributeTok{{-}d}\StringTok{\textquotesingle{},\textquotesingle{}} \AttributeTok{{-}f1,3}\NormalTok{ data.csv}
+\end{Highlighting}
+\end{Shaded}
+
+→ Extracts column 1 and 3 from data.csv
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cut} \AttributeTok{{-}d}\StringTok{\textquotesingle{},\textquotesingle{}} \AttributeTok{{-}f2{-}4}\NormalTok{ data.csv}
+\end{Highlighting}
+\end{Shaded}
+
+→ Extracts columns 2-4 of data.csv
+
+    \begin{Shaded}
+\begin{Highlighting}[]
+\BuiltInTok{echo} \StringTok{"abcdef"} \KeywordTok{|} \FunctionTok{cut} \AttributeTok{{-}c2{-}4}
+\end{Highlighting}
+\end{Shaded}
+
+→ Outputs \texttt{bcd}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
