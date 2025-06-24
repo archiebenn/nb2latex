@@ -8,7 +8,7 @@ fi
 
 # create array for args to go into and remove .ipynb for the array
 notebooks=()
-for arg in "$@", do
+for arg in "$@"; do
     # strip .ipynb from filename
     filename="${arg%.ipynb}"
     notebooks+=("$filename")
