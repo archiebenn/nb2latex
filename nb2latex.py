@@ -1,5 +1,7 @@
 import subprocess
+import argparse
 import sys
+import os
 import shutil
 from pathlib import Path
 
@@ -15,9 +17,8 @@ def checkMicromamba():
 # create env if required (no shell involved)
 def createEnv(): 
     result = subprocess.run(
-        ["micromamba", "env", "list"],
-        captureOutput = True,
-        text = True
+        ["micromamba", "env", "list"], 
+        captureOutput = True, text = True
     )
 
     if envName not in result.stdout:
@@ -37,8 +38,20 @@ def activateRun():
     """
     subprocess.run(["bash", "-c", shellScript], check = True)
 
-if __name__== "__main__":
-    checkMicromamba()
-    createEnv()
-    activateRun()
+# parsing 
+def main():
+    parser = argparse.ArgumentParser(description = "nb2latex CLI tool - convert multiple notebooks to a single LaTeX output")
+    parser.add_argument("--build", action = "store_true", help = "Build PDF")
+    parser.add_argument("--env", action = "store_true", help = "Activate (and create if required) nb2latex environment with micromamba")
+    args = parser.parse_args()
 
+    if args.env:
+        checkMicromamba()
+        createEnv()
+
+    if args.build:
+        activateRun()
+
+
+if __name__== "__main__":
+    main()
