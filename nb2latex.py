@@ -8,11 +8,13 @@ from pathlib import Path
 envName = "nb2latex"
 envFile = "environment.yml"
 
+
 # check if micromamba installed
 def checkMicromamba():
     if not shutil.which("micromamba"):
         print("micromamba not found in PATH")
         sys.exit(1)
+
 
 # create env if required (no shell involved)
 def createEnv(): 
@@ -29,6 +31,7 @@ def createEnv():
     else:
         print(f"{envFile} environment exists")
 
+
 # activate env and run build.py (shell involved - spawn a subprocess)
 def activateRun():
     shellScript = f"""
@@ -37,6 +40,7 @@ def activateRun():
     python build.property
     """
     subprocess.run(["bash", "-c", shellScript], check = True)
+
 
 # parsing 
 def main():
