@@ -61,7 +61,7 @@ def main():
     if args.build:
         checkMicromamba()
         createEnv()
-        activateRun(args.title, args.notebook)
+        activateRun(args.title, args.notebooks)
 
 
 if __name__== "__main__":
