@@ -33,11 +33,14 @@ def createEnv():
 
 
 # activate env and run build.py (shell involved - spawn a subprocess)
-def activateRun():
+# also builds build.py based on arguments passed to nb2latex.py
+def activateRun(title, notebooks):
+    notebookArgs = " ".join(f'"{nb}"' for nb in notebooks)          # wrap notebook filenames in double quotes for shell
+     
     shellScript = f"""
     eval "$(micromamba shell hook --shell=bash)"
     micromamba activate {envName}
-    python build.py
+    python build.py --title {title} {notebookArgs} 
     """
     subprocess.run(["bash", "-c", shellScript], check = True)
 
@@ -47,6 +50,8 @@ def main():
     parser = argparse.ArgumentParser(description = "nb2latex CLI tool - convert multiple notebooks to a single LaTeX output")
     parser.add_argument("--build", action = "store_true", help = "Build PDF. Will activate required environment automatically with micromamba")
     parser.add_argument("--env", action = "store_true", help = "Activate (and create if required) environment with micromamba")
+    parser.add_argument("--title", default="My Document", help="Document title")
+    parser.add_argument("notebooks", nargs="*", help="List of notebooks (.ipynb) to include")
     args = parser.parse_args()
     
     if args.env:
@@ -56,7 +61,7 @@ def main():
     if args.build:
         checkMicromamba()
         createEnv()
-        activateRun()
+        activateRun(args.title, args.notebook)
 
 
 if __name__== "__main__":
