@@ -37,7 +37,7 @@ def activateRun():
     shellScript = f"""
     eval "$(micromamba shell hook --shell=bash)"
     micromamba activate {envName}
-    python build.property
+    python build.py
     """
     subprocess.run(["bash", "-c", shellScript], check = True)
 
