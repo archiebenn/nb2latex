@@ -19,9 +19,11 @@ def checkMicromamba():
 # create env if required (no shell involved)
 def createEnv(): 
     result = subprocess.run(
-        ["micromamba", "env", "list"], 
-        captureOutput = True, text = True
-    )
+    ["micromamba", "env", "list"],
+    stdout=subprocess.PIPE,
+    stderr=subprocess.PIPE,
+    text=True
+)
 
     if envName not in result.stdout:
         print(f"Creating '{envName}' environment) from {envFile}...")
