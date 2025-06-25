@@ -1,6 +1,32 @@
 #!/bin/bash
 
 
+##### conda env build/activate #####
+# check if micromamba installed
+if ! command -v micromamba &> /dev/null; then
+    echo "Error: micromamba is not installed in PATH"
+    exit 1
+fi
+
+# load micromamba shell functions
+eval "$(micromamba shell hook --shell=bash)"
+
+# check if env exists
+envName="nb2latex"
+envFile="environment.yml"
+
+if ! micromamba env list | grep -q "^$envName"; then
+    echo "Creating environment '$envName' from $envFile"
+    micromamba create -y -n "$envName" -f "$envFile"
+fi
+
+# activate 
+micromamba activate "$envName"
+
+
+
+##### pdf build ##### 
+
 # default title
 docTitle='My Document'
 
