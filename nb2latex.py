@@ -41,15 +41,17 @@ def activateRun():
 # parsing 
 def main():
     parser = argparse.ArgumentParser(description = "nb2latex CLI tool - convert multiple notebooks to a single LaTeX output")
-    parser.add_argument("--build", action = "store_true", help = "Build PDF")
-    parser.add_argument("--env", action = "store_true", help = "Activate (and create if required) nb2latex environment with micromamba")
+    parser.add_argument("--build", action = "store_true", help = "Build PDF. Will activate required environment automatically with micromamba")
+    parser.add_argument("--env", action = "store_true", help = "Activate (and create if required) environment with micromamba")
     args = parser.parse_args()
-
+    
     if args.env:
         checkMicromamba()
         createEnv()
 
     if args.build:
+        checkMicromamba()
+        createEnv()
         activateRun()
 
 
