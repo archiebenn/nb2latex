@@ -76,7 +76,59 @@ def compilePDF(texFile):
 
 
 def main():
-    
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--title")          # from nb2latex.py
+    parser.add_argument("notebooks", nargs = "+")
+    args = parser.parse_args()
+
+    pdfTitle = args.title
+    notebooks = [os.path.splitext(nb)[0] for nb in args.notebooks]          #splits into filename and .ipynb extension and then leaves the extention behind
+
+    outputDir = f"{pdfTitle} files"            
+    os.makedirs(output_dir, exist_ok=True)          # creates directory for extra files from pdf creation with LaTeX
+
+    # convert notebook to .tex and extract body only of each
+    for nb in notebooks:
+        nbconvert(nb)
+        extractTexBody(f"{nb}.tex", f"{nb}Body.tex")
+
+    # take preamble from first notebook provided in CLI only
+    extractPreamble(f"{notebooks[0]}.tex", f"{pdfTitle}.tex")
+
+    ###### creating master .tex document ######
+    # adding dynamic title, begin{document}, and TOC
+    with open(f"{pdfTitle}.tex", "a") as f:
+        f.write(f"\\title{{{pdfTitle}}}\n")
+        f.write("\\begin{document}\n")
+        f.write("\\maketitle\n")
+        f.write("\\tableofcontents\n")
+
+        # adding input body tex files
+        for nb in notebooks:
+            f.write("\\clearpage\n")
+            f.write(f"\\input{{{nb}Body.tex}}\n")
+
+        # adding \end{document}
+        f.write("\\end{document}\n")
+
+        # compile PDF
+        compilePDF(f"{pdfTitle}.tex")
+
+        # move excess files to outputDir
+        for ext in ["aux", "log", "out", "toc", "tex"]:
+        file_name = f"{pdfTitle}.{ext}"
+        if os.path.exists(file_name):
+            shutil.move(file_name, os.path.join(outputDir, file_name))
+
+    print(f"PDF compiling complete! Output: {pdfTitle}.pdf")
+
+
+if __name__ == "__main__":
+    main()
+
+
+
+
 
 
 

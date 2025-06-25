@@ -36,7 +36,8 @@ def createEnv():
 # also builds build.py based on arguments passed to nb2latex.py
 def activateRun(title, notebooks):
     notebookArgs = " ".join(f'"{nb}"' for nb in notebooks)          # wrap notebook filenames in double quotes for shell
-     
+    
+    # runs build.py with args from CLI
     shellScript = f"""
     eval "$(micromamba shell hook --shell=bash)"
     micromamba activate {envName}
