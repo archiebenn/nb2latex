@@ -85,7 +85,7 @@ def main():
     notebooks = [os.path.splitext(nb)[0] for nb in args.notebooks]          #splits into filename and .ipynb extension and then leaves the extention behind
 
     outputDir = f"{pdfTitle} files"            
-    os.makedirs(output_dir, exist_ok=True)          # creates directory for extra files from pdf creation with LaTeX
+    os.makedirs(outputDir, exist_ok=True)          # creates directory for extra files from pdf creation with LaTeX
 
     # convert notebook to .tex and extract body only of each
     for nb in notebooks:
@@ -111,14 +111,14 @@ def main():
         # adding \end{document}
         f.write("\\end{document}\n")
 
-        # compile PDF
-        compilePDF(f"{pdfTitle}.tex")
+    # compile PDF
+    compilePDF(f"{pdfTitle}.tex")
 
-        # move excess files to outputDir
-        for ext in ["aux", "log", "out", "toc", "tex"]:
-        file_name = f"{pdfTitle}.{ext}"
-        if os.path.exists(file_name):
-            shutil.move(file_name, os.path.join(outputDir, file_name))
+    # move excess files to outputDir
+    for ext in ["aux", "log", "out", "toc", "tex"]:
+        fileName = f"{pdfTitle}.{ext}"
+        if os.path.exists(fileName):
+            shutil.move(fileName, os.path.join(outputDir, fileName))
 
     print(f"PDF compiling complete! Output: {pdfTitle}.pdf")
 
