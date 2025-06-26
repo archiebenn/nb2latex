@@ -35,12 +35,12 @@ You can also recreate the environment using Micromamba/Conda and the provided en
 Micromamba:
 ```bash
 micromamba create -f environment.yml
-micromamba activate nb2latex
+micromamba activate nb2latexEnv
 ```
 Or Conda:
 ```bash
 conda env create -f environment.yml
-conda activate your-env-name
+conda activate nb2latexEnv
 ```
 
 ## Usage

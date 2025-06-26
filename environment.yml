@@ -1,4 +1,4 @@
-name: nb2latex
+name: nb2latexEnv
 channels:
 - conda-forge
 - defaults
