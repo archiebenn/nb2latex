@@ -26,3 +26,6 @@ venv/
 # configs
 .vscode/
 .idea/
+
+#.sh build
+build.sh
