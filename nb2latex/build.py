@@ -115,7 +115,7 @@ def main():
     compilePDF(f"{pdfTitle}.tex")
 
     # move excess files to outputDir
-    for ext in ["aux", "log", "out", "toc", "tex", "pdf"]
+    for ext in ["aux", "log", "out", "toc", "tex", "pdf"]:
         fileName = f"{pdfTitle}.{ext}"
         if os.path.exists(fileName):
             shutil.move(fileName, os.path.join(outputDir, fileName))
