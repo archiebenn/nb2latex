@@ -1,4 +1,5 @@
 # MANIFEST.in
 global-exclude *.ipynb
+global-exclude *.pdf
 exclude notebooks/*
 exclude output/*
