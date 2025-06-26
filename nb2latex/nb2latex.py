@@ -63,7 +63,7 @@ def compilePDF(texFile):
 def runBuild(title, notebooks):
     pdfTitle = title
     notebooks = [os.path.splitext(nb)[0] for nb in notebooks if nb.endswith(".ipynb")]       #splits into filename and .ipynb extension and then leaves the extention behind
-    outputDir = f"{pdfTitle} output"      
+    outputDir = f"{pdfTitle} output files"      
     os.makedirs(outputDir, exist_ok=True)          # creates directory for extra files from pdf creation with LaTeX
 
     if not notebooks:
