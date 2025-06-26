@@ -4,13 +4,12 @@ import sys
 import os
 import shutil
 from pathlib import Path
-from . import build
-
 
 
 def nbconvert(nb):
     print(f"Converting {nb}.ipynb to LaTeX...")
     subprocess.run(["jupyter", "nbconvert", f"{nb}.ipynb", "--to", "latex" ], check = True)
+
 
 # extract lines between \begin{document} and \end{document} also remove \begin{doucment}, \maketitle, and \end{document} to leave body
 def extractTexBody(texFile, bodyFile):
@@ -35,6 +34,7 @@ def extractTexBody(texFile, bodyFile):
     with open(bodyFile, 'w') as f:
         f.writelines(bodyLines)
 
+
 def extractPreamble(texFile, preambleFile):
     with open(texFile, 'r') as f:
         lines = f.readlines()
@@ -52,20 +52,56 @@ def extractPreamble(texFile, preambleFile):
     with open(preambleFile, 'w') as f:
         f.writelines(preamble)
 
+
 def compilePDF(texFile):
     print("Compiling PDF")
     # run pdflatex two times to generate table of contents correctly in pdf
     subprocess.run(["pdflatex", texFile], stdout=subprocess. DEVNULL, stderr=subprocess.DEVNULL, check = True)
     subprocess.run(["pdflatex", texFile], stdout=subprocess. DEVNULL, stderr=subprocess.DEVNULL, check = True)
 
+
 def runBuild(title, notebooks):
-    notebookArgs = " ".join(f'"{nb}"' for nb in notebooks)
-    shellScript = f"""
-    eval "$(micromamba shell hook --shell=bash)"
-    micromamba activate {envName}
-    python -m nb2latex.build --title "{title}" {notebookArgs}
-    """
-    subprocess.run(["bash", "-c", shellScript], check=True)
+    pdfTitle = title
+    notebooks = [os.path.splitext(nb)[0] for nb in notebooks if nb.endswith(".ipynb")]       #splits into filename and .ipynb extension and then leaves the extention behind
+    outputDir = f"{pdfTitle} output"      
+    os.makedirs(outputDir, exist_ok=True)          # creates directory for extra files from pdf creation with LaTeX
+
+    if not notebooks:
+        print("No notebooks provided.")
+        sys.exit(1)
+
+    # convert notebook to .tex and extract body only of each
+    for nb in notebooks:
+        nbconvert(nb)
+        extractTexBody(f"{nb}.tex", f"{nb}Body.tex")
+
+    # take preamble from first notebook arg
+    extractPreamble(f"{notebooks[0]}.tex", f"{pdfTitle}.tex")
+
+    ###### creating master .tex document ######
+    with open(f"{pdfTitle}.tex", "a") as f:
+        f.write(f"\\title{{{pdfTitle}}}\n")
+        f.write("\\begin{document}\n")
+        f.write("\\maketitle\n")
+        f.write("\\tableofcontents\n")
+
+        # add input body tex files
+        for nb in notebooks:
+            f.write("\\clearpage\n")
+            f.write(f"\\input{{{nb}Body.tex}}\n")
+
+        f.write("\\end{document}\n")
+
+    compilePDF(f"{pdfTitle}.tex")
+
+    # move excess files to outputDir
+    for ext in ["aux", "log", "out", "toc", "tex", "pdf"]:
+        fileName = f"{pdfTitle}.{ext}"
+        if os.path.exists(fileName):
+            shutil.move(fileName, os.path.join(outputDir, fileName))
+
+    print(f"Compiling complete! PDF output: {os.path.join(outputDir, f'{pdfTitle}.pdf')}")
+
 
 def main():
     parser = argparse.ArgumentParser(description = "nb2latex CLI tool - convert multiple notebooks to a single LaTeX output")
@@ -76,6 +112,9 @@ def main():
 
     if args.build:
         runBuild(args.title, args.notebooks)
+    else:
+        parser.print_help()
+
 
 if __name__== "__main__":
     main()
