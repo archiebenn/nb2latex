@@ -15,5 +15,10 @@ dependencies = [
 "nbconvert>=7.16.6",
 ]
 
+[tool.setuptools.packages.find]
+include = ["nb2latex*"]
+exclude = ["notebooks*"]
+
+
 [project.scripts]
 nb2latex = "nb2latex.nb2latex:main"

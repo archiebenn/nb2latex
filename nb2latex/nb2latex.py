@@ -4,6 +4,7 @@ import sys
 import os
 import shutil
 from pathlib import Path
+from . import build
 
 envName = "nb2latex"
 envFile = "environment.yml"
@@ -33,6 +34,8 @@ def createEnv():
     else:
         print(f"{envFile} environment exists")
 
+def activateRun(title, notebooks):
+    build.runBuild(title, notebooks)
 
 # activate env and run build.py (shell involved - spawn a subprocess)
 # also builds build.py based on arguments passed to nb2latex.py

@@ -75,14 +75,9 @@ def compilePDF(texFile):
 
 
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--title")          # from nb2latex.py
-    parser.add_argument("notebooks", nargs = "+")
-    args = parser.parse_args()
-
-    pdfTitle = args.title
-    notebooks = [os.path.splitext(nb)[0] for nb in args.notebooks]          #splits into filename and .ipynb extension and then leaves the extention behind
+def runBuild(title, notebooks):
+    pdfTitle = title
+    notebooks = [os.path.splitext(nb)[0] for nb in notebooks]          #splits into filename and .ipynb extension and then leaves the extention behind
 
     outputDir = f"{pdfTitle} output"      
     os.makedirs(outputDir, exist_ok=True)          # creates directory for extra files from pdf creation with LaTeX
@@ -123,14 +118,17 @@ def main():
     print(f"PDF compiling complete! Output: {pdfTitle}.pdf")
 
 
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--title")          # from nb2latex.py
+    parser.add_argument("notebooks", nargs = "+")
+    args = parser.parse_args()
+
+    runBuild(args.title, args.notebooks)
+
+
+
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
 
