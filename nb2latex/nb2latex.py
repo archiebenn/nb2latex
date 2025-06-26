@@ -98,6 +98,15 @@ def runBuild(title, notebooks):
 
     compilePDF(f"{pdfTitle}.tex")
 
+    #remove excess files post-compiling
+    for nb in notebooks:
+        texFile = f"{nb}.tex"
+        bodyFile = f"{nb}Body.tex"
+        if os.path.exists(texFile):
+            os.remove(texFile)
+        if os.path.exists(bodyFile):
+            os.remove(bodyFile)
+
     # move excess files to outputDir
     for ext in ["aux", "log", "out", "toc", "tex", "pdf"]:
         fileName = f"{pdfTitle}.{ext}"
