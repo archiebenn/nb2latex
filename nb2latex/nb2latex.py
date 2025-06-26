@@ -5,6 +5,10 @@ import os
 import shutil
 from pathlib import Path
 
+if shutil.which("pandoc") is None:
+    print("Error: pandoc is not installed. Please install it from https://pandoc.org")
+    exit(1)
+
 
 def nbconvert(nb):
     print(f"Converting {nb}.ipynb to LaTeX...")
