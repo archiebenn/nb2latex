@@ -4,6 +4,7 @@
 *.out
 *.toc
 *.pdf
+*.tex
 
 # folders
 notebooks/
