@@ -8,3 +8,18 @@
 
 # folders
 notebooks/
+notebooks/.ipynb_checkpoints/
+
+# python
+__pycache__/
+*.py[cod]
+
+#envs 
+.env
+.venv/
+env/
+venv/
+
+# configs
+.vscode/
+.idea/
