@@ -26,4 +26,24 @@ Install dependencies:
 
 ```bash
 pip install nb2latex
+```
+
+## (Optional environment)
+You can also recreate the environment using Micromamba/Conda and the provided environment.yml to install all dependencies, including pandoc, jupyter, and LaTeX tools.
+
+Micromamba:
+```bash
+micromamba create -f environment.yml
+micromamba activate nb2latex
+```
+Or Conda:
+```bash
+conda env create -f environment.yml
+conda activate your-env-name
+```
+
+## Usage
+```bash
+nb2latex --build --title "LaTeX notebooks" notebook1.ipynb notebook2.ipynb notebook3.ipynb
+```
 
