@@ -4,7 +4,7 @@ Convert multiple Jupyter notebooks into a single LaTeX document and PDF.
 
 ## Overview
 
-`nb2latex` is a lightweight Python CLI tool that takes multiple `.ipynb` files and combines them into one clean LaTeX document. It extracts the main body of each .tex file produced from the corresponding .ipynb file using `nbconvert` and stitches them together into a single .tex file which is then compiled by pdflatex to output a PDF. A table of contents and title page are also included.
+`nb2latex` is a lightweight Python CLI tool that takes multiple `.ipynb` files and combines them into one clean LaTeX document. It extracts the main body of each .tex file produced from the corresponding .ipynb file using `nbconvert` and stitches them together into a single .tex file which is then compiled by `pdflatex` to output a PDF. A table of contents and title page are also included.
 
 ## How it works
 
