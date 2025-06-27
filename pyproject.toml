@@ -16,7 +16,7 @@ dependencies = [
     "notebook",
     "ipykernel",
 ]
-license = {text = "MIT"}
+license = { file = "LICENSE" }
 
 [tool.setuptools.packages.find]
 include = ["nb2latex*"]

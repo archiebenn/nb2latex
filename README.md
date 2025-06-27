@@ -46,6 +46,6 @@ conda activate nb2latexEnv
 ## Usage
 
 ```bash
-nb2latex --build --title "LaTeX notebooks" notebook1.ipynb notebook2.ipynb notebook3.ipynb
+nb2latex --title "LaTeX notebooks" notebook1.ipynb notebook2.ipynb notebook3.ipynb
 ```
 

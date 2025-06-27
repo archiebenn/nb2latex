@@ -117,16 +117,12 @@ def runBuild(title, notebooks):
 
 
 def main():
-    parser = argparse.ArgumentParser(description = "nb2latex CLI tool - convert multiple notebooks to a single LaTeX output")
-    parser.add_argument("--build", action = "store_true", help = "Build PDF")
+    parser = argparse.ArgumentParser(description = "nb2latex CLI tool - convert multiple notebooks to a single LaTeX output. \nMore info: https://github.com/archiebenn/nb2latex")
     parser.add_argument("--title", default="My Document", help="Document title")
     parser.add_argument("notebooks", nargs="*", help="List of notebooks (.ipynb) to include")
     args = parser.parse_args()
 
-    if args.build:
-        runBuild(args.title, args.notebooks)
-    else:
-        parser.print_help()
+    runBuild(args.title, args.notebooks)
 
 
 if __name__== "__main__":
