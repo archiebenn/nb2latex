@@ -3,7 +3,6 @@ import argparse
 import sys
 import os
 import shutil
-from pathlib import Path
 
 if shutil.which("pandoc") is None:
     print("Error: pandoc is not installed. Please install it from https://pandoc.org")
