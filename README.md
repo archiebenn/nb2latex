@@ -9,7 +9,7 @@ Convert multiple Jupyter notebooks into a single LaTeX document and PDF.
 ## How it works
 
 - Converts selected `.ipynb` notebooks to LaTeX using `nbconvert`.
-- Strips unnecessary LaTeX preamble, \begin{document}, and \end{document} in each .tex file.
+- Strips unnecessary LaTeX preamble, begin{document}, and end{document} in each .tex file.
 - Combines main bodies into one .tex document and uses the preamble from `nbconvert`.
 - Adds title page and table of contents automatically.
 - Compiles the final `.tex` to PDF using `pdflatex`.
