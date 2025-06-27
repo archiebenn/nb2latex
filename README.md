@@ -1,6 +1,6 @@
 # nb2latex
 
-Convert multiple Jupyter notebooks into a single, LaTeX document and PDF.
+Convert multiple Jupyter notebooks into a single LaTeX document and PDF.
 
 ## Overview
 
