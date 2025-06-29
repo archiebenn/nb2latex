@@ -145,6 +145,12 @@ def main():
     parser.add_argument(
         "notebooks", nargs="*", help="List of notebooks (.ipynb) to include"
     )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version="nb2latex 0.1.4",
+        help="Show version and exit",
+    )
     args = parser.parse_args()
 
     runBuild(args.title, args.notebooks)
