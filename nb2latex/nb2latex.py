@@ -9,9 +9,13 @@ if shutil.which("pandoc") is None:
     exit(1)
 
 
+# subprocess shell run to latex, and executes the .ipynb to ensure cell outputs on code
 def nbconvert(nb):
     print(f"Converting {nb}.ipynb to LaTeX...")
-    subprocess.run(["jupyter", "nbconvert", f"{nb}.ipynb", "--to", "latex"], check=True)
+    subprocess.run(
+        ["jupyter", "nbconvert", f"{nb}.ipynb", "--to", "latex", "--execute"],
+        check=True,
+    )
 
 
 # extract lines between \begin{document} and \end{document} also remove \begin{doucment}, \maketitle, and \end{document} to leave body
