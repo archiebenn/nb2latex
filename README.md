@@ -22,7 +22,7 @@ Convert multiple Jupyter notebooks into a single LaTeX document and PDF.
 - Pandoc (required for `nbconvert`)
 - A LaTeX distribution providing `pdflatex` on PATH (e.g MiKTeX or TeX Live)
 
-Install dependencies:
+Install:
 
 ```bash
 pip install nb2latex
