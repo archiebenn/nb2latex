@@ -44,8 +44,10 @@ conda activate nb2latexEnv
 ```
 
 ## Usage
+To create a single pdf document of 3 notebooks (notebook1.ipynb notebook2.ipynb notebook3.ipynb) with the title 'LaTeX notebooks':
 
 ```bash
 nb2latex --title "LaTeX notebooks" notebook1.ipynb notebook2.ipynb notebook3.ipynb
 ```
+Output found in a self-contained folder called 'LaTeX notebook output files'
 
